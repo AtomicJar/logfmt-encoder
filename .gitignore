@@ -1,0 +1,13 @@
+.DS_Store
+
+build/
+.gradle/
+
+*.iml
+*.ipr
+.idea/
+# intentionally, as we need to specify a path to checkstyle.xml there
+!.idea/checkstyle-idea.xml
+
+sidecar/.gogradle/
+.local
