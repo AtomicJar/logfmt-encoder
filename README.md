@@ -1,5 +1,7 @@
 # lofmt-encoder
 
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.atomicjar/logfmt-encoder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.atomicjar/logfmt-encoder)
+
 A Java library that follows the logfmt format, a logging format designed to be both human-readable and machine-parseable, 
 making it easy to understand and analyze log data.
 
