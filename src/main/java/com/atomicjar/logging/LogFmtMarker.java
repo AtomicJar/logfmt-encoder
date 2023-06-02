@@ -2,8 +2,9 @@ package com.atomicjar.logging;
 
 import org.slf4j.Marker;
 
+import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.function.BiConsumer;
 
@@ -23,23 +24,25 @@ import java.util.function.BiConsumer;
  */
 public class LogFmtMarker implements Marker {
 
-    private final Map<String, Object> data = new LinkedHashMap<>();
+    private final Map<String, Object> data;
 
-    private LogFmtMarker(String key, Object value) {
-        data.put(key, value);
+    private LogFmtMarker(Map<String, Object> data) {
+        this.data = Collections.unmodifiableMap(data);
     }
 
+
     public static LogFmtMarker with(String key, Object value) {
-        return new LogFmtMarker(key, value);
+        return new LogFmtMarker(Map.of(key, value));
     }
 
     public LogFmtMarker and(String key, Object value) {
+        var copy = new HashMap<>(data);
         if (value != null) {
-            data.put(key, value);
+            copy.put(key, value);
         } else {
-            data.remove(key);
+            copy.remove(key);
         }
-        return this;
+        return new LogFmtMarker(copy);
     }
 
     void forEachData(BiConsumer<String, Object> consumer) {
