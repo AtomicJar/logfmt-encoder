@@ -1,4 +1,4 @@
-# lofmt-encoder
+# logfmt-encoder
 
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.atomicjar/logfmt-encoder/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.atomicjar/logfmt-encoder)
 
