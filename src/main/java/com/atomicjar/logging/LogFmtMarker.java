@@ -26,13 +26,13 @@ public class LogFmtMarker implements Marker {
 
     private final Map<String, Object> data;
 
-    private LogFmtMarker(Map<String, Object> data) {
-        this.data = Collections.unmodifiableMap(data);
+    private LogFmtMarker(Map<String,Object> data) {
+        this.data = data;
     }
 
 
     public static LogFmtMarker with(String key, Object value) {
-        return new LogFmtMarker(Map.of(key, value));
+        return new LogFmtMarker(Collections.emptyMap()).and(key, value);
     }
 
     public LogFmtMarker and(String key, Object value) {
