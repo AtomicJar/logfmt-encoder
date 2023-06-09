@@ -32,7 +32,8 @@ public class LogFmtMarker implements Marker {
 
 
     public static LogFmtMarker with(String key, Object value) {
-        return new LogFmtMarker(Collections.emptyMap()).and(key, value);
+        var marker = new LogFmtMarker(Collections.emptyMap());
+        return value == null ? marker : marker.and(key, value);
     }
 
     public LogFmtMarker and(String key, Object value) {
