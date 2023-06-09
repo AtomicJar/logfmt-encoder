@@ -11,4 +11,14 @@ public class LogFmtMarkerTest {
         orig.and("c", "d");
         assertThat(orig.getData()).hasSize(1);
     }
+
+    @Test
+    public void testWithNullValues() {
+        LogFmtMarker.with("a", null);
+    }
+
+    @Test
+    public void testAndNullValues() {
+        LogFmtMarker.with("a", "b").and("c", null);
+    }
 }
