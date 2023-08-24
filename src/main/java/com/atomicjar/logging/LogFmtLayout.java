@@ -29,6 +29,9 @@ public class LogFmtLayout extends LayoutBase<ILoggingEvent> {
 
         add(sb, "logger", event.getLoggerName());
 
+        event.getMDCPropertyMap()
+                .forEach((mdcFieldId, mdcValue) -> add(sb, "mdc_" + mdcFieldId, mdcValue));
+
         if (event.getMarker() instanceof LogFmtMarker logFmtMarker) {
             logFmtMarker.forEachData((s, o) -> add(sb, s, o));
         }
