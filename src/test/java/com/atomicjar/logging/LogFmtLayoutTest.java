@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import java.time.Duration;
 import java.time.temporal.ChronoUnit;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -40,6 +41,18 @@ class LogFmtLayoutTest {
         // ignore the timestamp part since time and zone may vary
         assertThat(formattedEvent).contains(" level=info msg=\"this is the message\" logger=com.some.ClassName");
         assertThat(formattedEvent).endsWith("\n");
+    }
+
+    @Test
+    void testLogEventMDC() {
+        final LoggingEvent loggingEvent = createDummyEvent("this is the message", new Object[] {});
+        loggingEvent.setMDCPropertyMap(Map.of("traceId", "e4bbb7c0f6a2ff07", "spanId", "a5f47e9fced314a2"));
+
+        String formattedEvent = layout.doLayout(loggingEvent);
+
+        assertThat(formattedEvent)
+            .contains("mdc_traceId=e4bbb7c0f6a2ff07")
+            .contains("mdc_spanId=a5f47e9fced314a2");
     }
 
     @Test
